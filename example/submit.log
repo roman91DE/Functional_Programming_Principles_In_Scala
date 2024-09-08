@@ -1,0 +1,27 @@
+[info] welcome to sbt 1.8.2 (Oracle Corporation Java 11)
+[info] loading settings for project example-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/example/project/project/project
+[info] loading settings for project example-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/example/project/project
+[success] Generated .bloop/example-build-build.json
+[success] Total time: 11 s, completed 8 Sep 2024, 15:40:33
+[info] loading settings for project example-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/example/project
+[success] Generated .bloop/example-build.json
+[success] Total time: 6 s, completed 8 Sep 2024, 15:40:41
+[info] loading settings for project example from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-example (in build file:/Users/rmn/repos/fp_scala/example/)
+[info] Attempting to submit "example" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: XiuCbl32oQ3eYx1K
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/EoeMo/
+[info] 
+[info] and clicking on "My Submission".
+[success] Total time: 3 s, completed 8 Sep 2024, 15:40:49
