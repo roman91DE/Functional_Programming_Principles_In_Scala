@@ -15,11 +15,11 @@ object RecFun extends RecFunInterface:
 
   def sum_tail(f: Int => Int, a: Int, b: Int): Int = {
     @scala.annotation.tailrec
-    def loop(a: Int, b: Int, acc: Int): Int = {
+    def loop(a: Int, acc: Int): Int = {
       if a > b then acc
-      else loop(a + 1, b, acc + f(a))
+      else loop(a + 1, acc + f(a))
     }
-    loop(a, b, 0)
+    loop(a, 0)
   }
 
   def pascal_naive(c: Int, r: Int): Int = {
