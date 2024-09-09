@@ -84,6 +84,49 @@ class RecFunSuite extends munit.FunSuite:
     assertEquals(countChange(300, List(500, 5, 50, 100, 20, 200, 10)), 1022)
   }
 
+  test("countChange: empty coin list") {
+    assertEquals(countChange(100, List()), 0)
+  }
+
+  test("countChange: amount is 0") {
+    assertEquals(countChange(0, List(1, 2, 5)), 1)
+  }
+
+  test("countChange: single coin") {
+    assertEquals(countChange(5, List(5)), 1)
+  }
+
+  test("countChange: no solution possible") {
+    assertEquals(countChange(3, List(2, 4)), 0)
+  }
+
+  test("countChange: large amount with small coins") {
+    assertEquals(countChange(1000, List(1, 2)), 501)
+  }
+
+  test("countChange: amount smaller than smallest coin") {
+    assertEquals(countChange(2, List(5, 10, 20)), 0)
+  }
+
+  test("countChange: large number of coins") {
+    assertEquals(countChange(100, (1 to 100).toList), 190569292)
+  }
+
+  test("countChange: repeated coins") {
+    assertEquals(countChange(4, List(1, 1, 2, 2)), 3)
+  }
+
+  test("countChange: negative amount") {
+    assertEquals(countChange(-5, List(1, 2, 5)), 0)
+  }
+
+  test("countChange: negative coins") {
+    assertEquals(
+      countChange(5, List(-1, 2, 3)),
+      1
+    ) // Should ignore negative coins
+  }
+
   // ------ pascal tests ------------------------------------------------------
 
   test("pascal: col=0,row=0") {

@@ -10,10 +10,6 @@ object RecFun extends RecFunInterface:
       for col <- 0 to row do print(s"${pascal(col, row)} ")
       println()
 
-  /** Pascal's Triangle 1 1 1 1 2 1 1 3 3 1 1 4 6 4 1 1 5 10 10 5 1 1 6 15 20 15
-    * 6 1 1 7 21 35 35 21 7 1 1 8 28 56 70 56 28 8 1 1 9 36 84 126 126 84 36 9 1
-    */
-
   def pascal_naive(c: Int, r: Int): Int = {
     if (c == 0 || c == r) 1
     else pascal_naive(c - 1, r - 1) + pascal_naive(c, r - 1)
@@ -32,55 +28,6 @@ object RecFun extends RecFunInterface:
     recfunc(c, r, Map.empty)
   }
 
-  /** Exercise 2 Write a recursive function which verifies the balancing of
-    * parentheses in a string, which we represent as a List[Char] not a String.
-    * For example, the function should return true for the following strings:
-    *
-    * (if (zero? x) max (/ 1 x))
-    *
-    * I told him (that it's not (yet) done). (But he wasn't listening)
-    *
-    * The function should return false for the following strings:
-    *
-    * :-)
-    *
-    * ())(
-    *
-    * The last example shows that it's not enough to verify that a string
-    * contains the same number of opening and closing parentheses.
-    *
-    * Do this exercise by implementing the balance function in RecFun.scala. Its
-    * signature is as follows:
-    *
-    * def balance(chars: List[Char]): Boolean
-    *
-    * There are three methods on List[Char] that are useful for this exercise:
-    *
-    * chars.isEmpty: Boolean returns whether a list is empty
-    *
-    * chars.head: Char returns the first element of the list
-    *
-    * chars.tail: List[Char] returns the list without the first element
-    *
-    * Hint: you can define an inner function if you need to pass extra
-    * parameters to your function.
-    *
-    * Testing: You can use the toList method to convert from a String to a
-    * List[Char]: e.g. "(just an) example".toList.
-    */
-
-//   def balance(chars: List[Char]): Boolean = {
-
-//     def recurseString(chars: List[Char], openCount: Int, closeCount: Int): Boolean = {
-//         if chars.isEmpty then {openCount == closeCount} else {
-//             if chars.head.equals('(') then recurseString(chars.tail, openCount+1, closeCount)
-//             else if chars.head.equals(')') then recurseString(chars.tail, openCount, closeCount+1)
-//             else recurseString(chars.tail, openCount, closeCount)
-//         }
-//     }
-//     recurseString(chars, 0, 0)
-//   }
-
   def balance(chars: List[Char]): Boolean = {
     def recurseString(chars: List[Char], count: Int): Boolean = {
       if chars.isEmpty then count == 0
@@ -94,8 +41,59 @@ object RecFun extends RecFunInterface:
 
   /** Exercise 3
     */
+  def countChangeSlow(money: Int, coins: List[Int]): Int = {
+
+    def isPossible(money: Int, coins: List[Int], newCoin: Int): Boolean = {
+      (coins.sum + newCoin) <= money
+    }
+
+    var foundSolutions: List[List[Int]] = Nil
+
+    def loop(money: Int, usedCoins: List[Int]): Unit = {
+      if usedCoins.sum == money then {
+        foundSolutions = foundSolutions.appendedAll(List(usedCoins))
+        return ()
+      } else if usedCoins.sum > money then {
+        return ()
+      } else {
+        for (coin <- coins) {
+          if isPossible(money, usedCoins, coin) then
+            loop(money, usedCoins.appendedAll(List(coin)))
+        }
+      }
+
+    }
+
+    loop(money, Nil)
+    val uniqueSolutions = foundSolutions.map(_.sorted).distinct
+    uniqueSolutions.length
+  }
+
   def countChange(money: Int, coins: List[Int]): Int = {
 
-    def isPossible(money: Int, coins: List[Int], newCoin: Int): Boolean = {}
+    if !(coins.distinct.length == coins.length) then
+      return countChange(money, coins.distinct)
 
+    val positiveCoins = coins.filter(_ > 0)
+    if !(positiveCoins.length == coins.length) then
+      return countChange(money, positiveCoins)
+
+    val sortedCoins = coins.filter(_ <= money).sorted.reverse
+    val memo = collection.mutable.Map[(Int, List[Int]), Int]()
+
+    def loop(remaining: Int, availableCoins: List[Int]): Int = {
+      if (remaining == 0) return 1
+      if (remaining < 0 || availableCoins.isEmpty) return 0
+
+      memo.getOrElseUpdate(
+        (remaining, availableCoins), {
+          val withFirstCoin =
+            loop(remaining - availableCoins.head, availableCoins)
+          val withoutFirstCoin = loop(remaining, availableCoins.tail)
+          withFirstCoin + withoutFirstCoin
+        }
+      )
+    }
+
+    loop(money, sortedCoins)
   }
