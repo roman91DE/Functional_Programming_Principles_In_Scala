@@ -10,6 +10,18 @@ object RecFun extends RecFunInterface:
       for col <- 0 to row do print(s"${pascal(col, row)} ")
       println()
 
+  def sum(f: Int => Int, a: Int, b: Int): Int =
+    if a > b then 0 else f(a) + sum(f, a + 1, b)
+
+  def sum_tail(f: Int => Int, a: Int, b: Int): Int = {
+    @scala.annotation.tailrec
+    def loop(a: Int, b: Int, acc: Int): Int = {
+      if a > b then acc
+      else loop(a + 1, b, acc + f(a))
+    }
+    loop(a, b, 0)
+  }
+
   def pascal_naive(c: Int, r: Int): Int = {
     if (c == 0 || c == r) 1
     else pascal_naive(c - 1, r - 1) + pascal_naive(c, r - 1)
@@ -71,14 +83,19 @@ object RecFun extends RecFunInterface:
 
   def countChange(money: Int, coins: List[Int]): Int = {
 
+    // Remove duplicate coins
     if !(coins.distinct.length == coins.length) then
       return countChange(money, coins.distinct)
 
+    // Remove negative or zero coins
     val positiveCoins = coins.filter(_ > 0)
     if !(positiveCoins.length == coins.length) then
       return countChange(money, positiveCoins)
 
+    // Remove coins that are greater than money and sort the rest in descending order
     val sortedCoins = coins.filter(_ <= money).sorted.reverse
+
+    // Memoization:
     val memo = collection.mutable.Map[(Int, List[Int]), Int]()
 
     def loop(remaining: Int, availableCoins: List[Int]): Int = {

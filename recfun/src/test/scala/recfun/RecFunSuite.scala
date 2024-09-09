@@ -182,5 +182,52 @@ class RecFunSuite extends munit.FunSuite:
     assertEquals(pascal(5, 10), 252)
   }
 
+  // write a test case for this function: def sum(f: Int => Int, a: Int, b: Int): Int = {
+  //     if a > b then 0 else f(a) + sum(f, a-1, b)
+  // }
+  test("sum: sum of integers from 1 to 5") {
+    assertEquals(sum(x => x, 1, 5), 15)
+  }
+
+  test("sum: sum of integers from 1 to 5") {
+    assertEquals(sum(x => x * x, 1, 5), 55)
+  }
+
+  test("sum: sum of integers from 1 to 5") {
+    assertEquals(sum(x => x * x * x, 1, 5), 225)
+  }
+
+  test("invalid range") {
+    assertEquals(sum(x => x, 5, 1), 0)
+  }
+
+  // Additional test cases for sum_tail
+  test("sum_tail: sum of integers from 1 to 5") {
+    assertEquals(sum_tail(x => x, 1, 5), 15)
+  }
+
+  test("sum_tail: sum of squares from 1 to 5") {
+    assertEquals(sum_tail(x => x * x, 1, 5), 55)
+  }
+
+  test("sum_tail: sum of cubes from 1 to 5") {
+    assertEquals(sum_tail(x => x * x * x, 1, 5), 225)
+  }
+
+  test("sum_tail: invalid range") {
+    assertEquals(sum_tail(x => x, 5, 1), 0)
+  }
+
+  test("sum_tail: empty range") {
+    assertEquals(sum_tail(x => x, 1, 0), 0)
+  }
+
+  test("sum_tail: single element range") {
+    assertEquals(sum_tail(x => x * 2, 3, 3), 6)
+  }
+
+  test("sum_tail: large range") {
+    assertEquals(sum_tail(x => 1, 1, 1000000), 1000000)
+  }
   import scala.concurrent.duration.*
   override val munitTimeout = 10.seconds

@@ -1,0 +1,64 @@
+[info] welcome to sbt 1.8.2 (Oracle Corporation Java 11)
+[info] loading settings for project recfun-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/recfun/project/project/project
+[info] loading settings for project recfun-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/recfun/project/project
+[success] Generated .bloop/recfun-build-build.json
+[success] Total time: 9 s, completed 9 Sep 2024, 20:50:16
+[info] loading settings for project recfun-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/recfun/project
+[success] Generated .bloop/recfun-build.json
+[success] Total time: 5 s, completed 9 Sep 2024, 20:50:23
+[info] loading settings for project recfun from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-recfun (in build file:/Users/rmn/repos/fp_scala/recfun/)
+[info] scalafmt: Formatting 1 Scala sources (/Users/rmn/repos/fp_scala/recfun)...
+[info] scalafmt: Reformatted 1 Scala sources
+[info] compiling 1 Scala source to /Users/rmn/repos/fp_scala/recfun/target/scala-3.3.0/classes ...
+[info] done compiling
+[info] Attempting to submit "recfun" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: NwrUhLGkH9yYRije
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/5y1CP/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/DV6Vv
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 29 s, completed 9 Sep 2024, 20:50:57
+[info] welcome to sbt 1.8.2 (Oracle Corporation Java 11)
+[info] loading settings for project recfun-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/recfun/project/project/project
+[info] loading settings for project recfun-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/recfun/project/project
+[success] Generated .bloop/recfun-build-build.json
+[success] Total time: 10 s, completed 9 Sep 2024, 20:55:33
+[info] loading settings for project recfun-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/recfun/project
+[success] Generated .bloop/recfun-build.json
+[success] Total time: 5 s, completed 9 Sep 2024, 20:55:41
+[info] loading settings for project recfun from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-recfun (in build file:/Users/rmn/repos/fp_scala/recfun/)
+[info] compiling 1 Scala source to /Users/rmn/repos/fp_scala/recfun/target/scala-3.3.0/classes ...
+[info] done compiling
+[info] Attempting to submit "recfun" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: 9WUWmWcpoyem12gd
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/5y1CP/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/DV6Vv
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 27 s, completed 9 Sep 2024, 20:56:12
