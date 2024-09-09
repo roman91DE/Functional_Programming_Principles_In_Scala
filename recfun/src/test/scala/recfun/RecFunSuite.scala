@@ -21,7 +21,48 @@ class RecFunSuite extends munit.FunSuite:
     assert(!balance("())(".toList))
   }
 
-  // ------ countChange tests -------------------------------------------------
+  // Additional balance tests
+  test("balance: empty string is balanced") {
+    assert(balance("".toList))
+  }
+
+  test("balance: single opening parenthesis is unbalanced") {
+    assert(!balance("(".toList))
+  }
+
+  test("balance: single closing parenthesis is unbalanced") {
+    assert(!balance(")".toList))
+  }
+
+  test("balance: nested parentheses are balanced") {
+    assert(balance("((()))".toList))
+  }
+
+  test("balance: mismatched nested parentheses are unbalanced") {
+    assert(!balance("((())".toList))
+  }
+
+  test("balance: balanced parentheses with other characters") {
+    assert(balance("(hello (world))".toList))
+  }
+
+  test("balance: unbalanced parentheses with other characters") {
+    assert(!balance("(hello (world)".toList))
+  }
+
+  test("balance: alternating parentheses are unbalanced") {
+    assert(!balance("()()())()".toList))
+  }
+
+  test("balance: complex balanced expression") {
+    assert(balance("((()())())((()))".toList))
+  }
+
+  test("balance: complex unbalanced expression") {
+    assert(!balance("((()())())((())))".toList))
+  }
+
+//   // ------ countChange tests -------------------------------------------------
 
   test("countChange: example given in instructions") {
     assertEquals(countChange(4,List(1,2)), 3)
@@ -41,6 +82,18 @@ class RecFunSuite extends munit.FunSuite:
 
   // ------ pascal tests ------------------------------------------------------
 
+  test("pascal: col=0,row=0") {
+    assertEquals(pascal_naive(0, 0), 1)
+  }
+
+  test("pascal: col=1,row=2") {
+    assertEquals(pascal_naive(1, 2), 2)
+  }
+
+  test("pascal: col=1,row=3") {
+    assertEquals(pascal_naive(1, 3), 3)
+  }
+
   test("pascal: col=0,row=2") {
     assertEquals(pascal(0, 2), 1)
   }
@@ -51,6 +104,35 @@ class RecFunSuite extends munit.FunSuite:
 
   test("pascal: col=1,row=3") {
     assertEquals(pascal(1, 3), 3)
+  }
+
+  // Additional pascal tests
+  test("pascal: col=2,row=4") {
+    assertEquals(pascal(2, 4), 6)
+  }
+
+  test("pascal: col=1,row=4") {
+    assertEquals(pascal(1, 4), 4)
+  }
+
+  test("pascal: col=2,row=5") {
+    assertEquals(pascal(2, 5), 10)
+  }
+
+  test("pascal: col=4,row=8") {
+    assertEquals(pascal(4, 8), 70)
+  }
+
+  test("pascal: col=0,row=10") {
+    assertEquals(pascal(0, 10), 1)
+  }
+
+  test("pascal: col=10,row=10") {
+    assertEquals(pascal(10, 10), 1)
+  }
+
+  test("pascal: col=5,row=10") {
+    assertEquals(pascal(5, 10), 252)
   }
 
   import scala.concurrent.duration.*
