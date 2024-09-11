@@ -7,7 +7,7 @@ def square[A: Numeric](list: List[A]): List[A] = {
   list.map(x => implicitly[Numeric[A]].times(x, x))
 }
 
-// generic/numeric sumValues function
+// generic/numeric reduce function
 def sumValues[A: Numeric](list: List[A]): A = {
     def loop(list: List[A], acc: A): A = {
         if (list.isEmpty) acc
