@@ -13,29 +13,11 @@ class FunSetSuite extends munit.FunSuite:
     assert(contains(x => true, 100))
   }
 
-  /**
-   * When writing tests, one would often like to re-use certain values for multiple
-   * tests. For instance, we would like to create an Int-set and have multiple test
-   * about it.
-   *
-   * Instead of copy-pasting the code for creating the set into every test, we can
-   * store it in the test class using a val:
-   *
-   *   val s1 = singletonSet(1)
-   *
-   * However, what happens if the method "singletonSet" has a bug and crashes? Then
-   * the test methods are not even executed, because creating an instance of the
-   * test class fails!
-   *
-   * Therefore, we put the shared values into a separate trait (traits are like
-   * abstract classes), and create an instance inside each test method.
-   *
-   */
-
   trait TestSets:
     val s1 = singletonSet(1)
     val s2 = singletonSet(2)
     val s3 = singletonSet(3)
+    val s4 = singletonSet(4)
 
   /**
    * This test is currently disabled (by using .ignore) because the method
@@ -45,7 +27,7 @@ class FunSetSuite extends munit.FunSuite:
    * .ignore annotation.
    */
 
-    test("singleton set one contains one".ignore) {
+    test("singleton set one contains one") {
     
     /**
      * We create a new instance of the "TestSets" trait, this gives us access
@@ -67,7 +49,60 @@ class FunSetSuite extends munit.FunSuite:
       assert(!contains(s, 3), "Union 3")
   }
 
+  test("intersect contains only elements in both sets") {
+    new TestSets:
+      val s12 = union(s1, s2)
+      val s23 = union(s2, s3)
+      val i = intersect(s12, s23)
+      assert(contains(i, 2), "Intersect 2")
+      assert(!contains(i, 1), "Intersect 1")
+      assert(!contains(i, 3), "Intersect 3")
+  }
 
+  test("diff contains elements in first set but not in second") {
+    new TestSets:
+      val s123 = union(union(s1, s2), s3)
+      val s23 = union(s2, s3)
+      val d = diff(s123, s23)
+      assert(contains(d, 1), "Diff 1")
+      assert(!contains(d, 2), "Diff 2")
+      assert(!contains(d, 3), "Diff 3")
+  }
+
+  test("filter returns subset of elements satisfying predicate") {
+    new TestSets:
+      val s1234 = union(union(union(s1, s2), s3), s4)
+      val evenSet = filter(s1234, x => x % 2 == 0)
+      assert(contains(evenSet, 2), "Filter 2")
+      assert(contains(evenSet, 4), "Filter 4")
+      assert(!contains(evenSet, 1), "Filter 1")
+      assert(!contains(evenSet, 3), "Filter 3")
+  }
+
+  test("forall checks if all elements satisfy predicate") {
+    new TestSets:
+      val s1234 = union(union(union(s1, s2), s3), s4)
+      assert(forall(s1234, x => x > 0), "Forall positive")
+      assert(!forall(s1234, x => x % 2 == 0), "Forall even")
+  }
+
+  test("exists checks if any element satisfies predicate") {
+    new TestSets:
+      val s1234 = union(union(union(s1, s2), s3), s4)
+      assert(exists(s1234, x => x % 2 == 0), "Exists even")
+      assert(!exists(s1234, x => x < 0), "Exists negative")
+  }
+
+  test("map transforms elements using given function") {
+    new TestSets:
+      val s1234 = union(union(union(s1, s2), s3), s4)
+      val doubled = map(s1234, x => x * 2)
+      assert(contains(doubled, 2), "Map 2")
+      assert(contains(doubled, 4), "Map 4")
+      assert(contains(doubled, 6), "Map 6")
+      assert(contains(doubled, 8), "Map 8")
+      assert(!contains(doubled, 1), "Map 1")
+  }
 
   import scala.concurrent.duration.*
   override val munitTimeout = 10.seconds

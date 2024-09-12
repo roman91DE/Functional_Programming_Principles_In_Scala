@@ -1,0 +1,29 @@
+[info] welcome to sbt 1.8.2 (Oracle Corporation Java 11)
+[info] loading settings for project funsets-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/funsets/project/project/project
+[info] loading settings for project funsets-build-build from metals.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/funsets/project/project
+[success] Generated .bloop/funsets-build-build.json
+[success] Total time: 10 s, completed 12 Sep 2024, 21:15:02
+[info] loading settings for project funsets-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/rmn/repos/fp_scala/funsets/project
+[success] Generated .bloop/funsets-build.json
+[success] Total time: 8 s, completed 12 Sep 2024, 21:15:13
+[info] loading settings for project funsets from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-funsets (in build file:/Users/rmn/repos/fp_scala/funsets/)
+[info] Attempting to submit "funsets" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: hL1htbpVpenA6Hu4
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/xL0rP/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/Edqdi
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 7 s, completed 12 Sep 2024, 21:15:26
