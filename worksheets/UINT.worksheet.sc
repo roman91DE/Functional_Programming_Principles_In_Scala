@@ -5,9 +5,28 @@ trait UINT {
     def decrement(): UINT
 
     def +(other: UINT): UINT = ifZeroElse(other, decrement() + (other.increment()))
+    def - (other: UINT): UINT = {
+        ifZeroElse(
+            ZERO,
+            other.ifZeroElse(
+                this,
+                if this <= other then ZERO else decrement() - other.decrement()
+            ))}
+
     def *(other: UINT): UINT = {
-        ifZeroElse(ZERO, other.ifZeroElse(ZERO, decrement().ifZeroElse(other, decrement() * (other + other))))
+        ifZeroElse(
+            ZERO,
+            other.ifZeroElse(
+                ZERO, decrement().ifZeroElse(
+                    other,
+                    decrement() * (other + other))))
     };
+
+    def /(other: UINT): UINT = ???
+    def %(other: UINT): UINT = ???
+
+
+
     def == (other: UINT): Boolean = ifZeroElse[Boolean](other.ifZeroElse[Boolean](true, false), other.decrement() == decrement())
     def < (other: UINT): Boolean = ifZeroElse[Boolean](other.ifZeroElse[Boolean](false, true), decrement() < other.decrement())
     def <= (other: UINT): Boolean = ==(other) | <(other)
@@ -84,6 +103,20 @@ two <= two
 
 two > one
 one > two
+
+
+one - one
+
+two - one
+
+two - zero
+
+zero - zero
+
+one - two
+
+
+
 
 
 
