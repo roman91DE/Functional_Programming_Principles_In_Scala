@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -e
+set -o pipefail
+
+# Run sbt with the submit command
+sbt "submit rohoehn123@gmail.com hL1htbpVpenA6Hu4" >> submit.log 2>> submit_err.log
