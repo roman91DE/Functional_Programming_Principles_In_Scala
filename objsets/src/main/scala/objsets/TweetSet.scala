@@ -53,7 +53,7 @@ abstract class TweetSet extends TweetSetInterface:
    * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def union(that: TweetSet): TweetSet = ???
+  def union(that: TweetSet): TweetSet
 
   /**
    * Returns the tweet from this set which has the greatest retweet count.
@@ -64,7 +64,9 @@ abstract class TweetSet extends TweetSetInterface:
    * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def mostRetweeted: Tweet = ???
+  def mostRetweeted: Tweet = mostRetweetedAcc(None)
+
+  def mostRetweetedAcc(acc: Option[Tweet]): Tweet
 
   /**
    * Returns a list containing all tweets of this set, sorted by retweet count
@@ -107,6 +109,10 @@ abstract class TweetSet extends TweetSetInterface:
 class Empty extends TweetSet:
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = acc
 
+  def union(that: TweetSet): TweetSet = that
+
+  def mostRetweetedAcc(acc: Option[Tweet]): Tweet = acc.getOrElse(throw new java.util.NoSuchElementException)
+
   /**
    * The following methods are already implemented
    */
@@ -126,6 +132,21 @@ class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet:
     right.filterAcc(p, left.filterAcc(p, if p(elem) then acc.incl(elem) else acc))
   }
 
+  def union(that: TweetSet): TweetSet = {
+    left.union(that).union(right).incl(elem)
+  }
+
+  def mostRetweetedAcc(acc: Option[Tweet]): Tweet = {
+
+    val accNew = acc match {
+      case Some(l) => if l.retweets > elem.retweets then l else elem
+      case None => elem
+    }
+
+    val newTree = filter(t => t.retweets > accNew.retweets)
+    newTree.mostRetweetedAcc(Option(accNew))
+
+  }
 
   /**
    * The following methods are already implemented
