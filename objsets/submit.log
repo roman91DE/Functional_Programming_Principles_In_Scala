@@ -1,0 +1,58 @@
+[info] welcome to sbt 1.8.2 (Eclipse Adoptium Java 11.0.26)
+[info] loading settings for project objsets-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/project/project/project
+[info] loading settings for project objsets-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/project/project
+[success] Generated .bloop/objsets-build-build.json
+[success] Total time: 1 s, completed Feb 7, 2025, 6:20:37 PM
+[info] loading settings for project objsets-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/project
+[success] Generated .bloop/objsets-build.json
+[success] Total time: 1 s, completed Feb 7, 2025, 6:20:38 PM
+[info] loading settings for project objsets from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-objsets (in build file:/Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/)
+[info] Attempting to submit "objsets" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: ieSqgRezhwq1QI6e
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/vZRw5/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/bZ7Cg
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 2 s, completed Feb 7, 2025, 6:20:40 PM
+[info] welcome to sbt 1.8.2 (Eclipse Adoptium Java 11.0.26)
+[info] loading settings for project objsets-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/project/project/project
+[info] loading settings for project objsets-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/project/project
+[success] Generated .bloop/objsets-build-build.json
+[success] Total time: 1 s, completed Feb 7, 2025, 10:04:59 PM
+[info] loading settings for project objsets-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/project
+[success] Generated .bloop/objsets-build.json
+[success] Total time: 1 s, completed Feb 7, 2025, 10:05:00 PM
+[info] loading settings for project objsets from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-objsets (in build file:/Users/roman/Repos/Functional_Programming_Principles_In_Scala/objsets/)
+[info] Attempting to submit "objsets" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: fiDblO3lEbvzpu3b
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/vZRw5/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/bZ7Cg
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 1 s, completed Feb 7, 2025, 10:05:02 PM

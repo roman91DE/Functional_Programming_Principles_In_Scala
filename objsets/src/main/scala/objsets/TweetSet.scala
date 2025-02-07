@@ -77,7 +77,9 @@ abstract class TweetSet extends TweetSetInterface:
    * Question: Should we implement this method here, or should it remain abstract
    * and be implemented in the subclasses?
    */
-  def descendingByRetweet: TweetList = ???
+  def descendingByRetweet: TweetList = ascendingByRetweetAcc(Nil).reverse()
+
+  def ascendingByRetweetAcc(acc: TweetList): TweetList
 
   /**
    * The following methods are already implemented
@@ -113,6 +115,8 @@ class Empty extends TweetSet:
 
   def mostRetweetedAcc(acc: Option[Tweet]): Tweet = acc.getOrElse(throw new java.util.NoSuchElementException)
 
+  def ascendingByRetweetAcc(acc: TweetList): TweetList = acc
+
   /**
    * The following methods are already implemented
    */
@@ -128,24 +132,44 @@ class Empty extends TweetSet:
 class NonEmpty(elem: Tweet, left: TweetSet, right: TweetSet) extends TweetSet:
 
   def filterAcc(p: Tweet => Boolean, acc: TweetSet): TweetSet = {
-    
+    // println(s"non-empty - filterAcc")
     right.filterAcc(p, left.filterAcc(p, if p(elem) then acc.incl(elem) else acc))
   }
 
   def union(that: TweetSet): TweetSet = {
-    left.union(that).union(right).incl(elem)
+    // println(s"non-empty - union")
+    left.union(right.union(that)).incl(elem)
   }
 
+  // def mostRetweetedAcc(acc: Option[Tweet]): Tweet = {
+
+  //   val accNew = acc match {
+  //     case Some(l) => if l.retweets > elem.retweets then l else elem
+  //     case None => elem
+  //   }
+
+  //   val newTree = filter(t => t.retweets > accNew.retweets)
+  //   newTree.mostRetweetedAcc(Option(accNew))
+
+  // }
+
   def mostRetweetedAcc(acc: Option[Tweet]): Tweet = {
+  // println(s"non-empty - mostRetweetedAcc")
+  val accNew = acc match {
+    case Some(l) => if l.retweets > elem.retweets then l else elem
+    case None => elem
+  }
 
-    val accNew = acc match {
-      case Some(l) => if l.retweets > elem.retweets then l else elem
-      case None => elem
-    }
+  val leftMax = if left.isInstanceOf[Empty] then accNew else left.mostRetweetedAcc(Some(accNew))
+  val rightMax = if right.isInstanceOf[Empty] then leftMax else right.mostRetweetedAcc(Some(leftMax))
 
-    val newTree = filter(t => t.retweets > accNew.retweets)
-    newTree.mostRetweetedAcc(Option(accNew))
+  rightMax
+}
 
+  def ascendingByRetweetAcc(acc: TweetList): TweetList = {
+    // println(s"non-empty - ascendingByRetweetAcc")
+    val newAcc = Cons(mostRetweeted, acc)
+    remove(mostRetweeted).ascendingByRetweetAcc(newAcc)
   }
 
   /**
@@ -189,28 +213,52 @@ trait TweetList:
       f(head)
       tail.foreach(f)
 
+  def reverse() : TweetList = reverseAcc(Nil)
+  def reverseAcc(acc: TweetList): TweetList
+
 object Nil extends TweetList:
   def head = throw java.util.NoSuchElementException("head of EmptyList")
   def tail = throw java.util.NoSuchElementException("tail of EmptyList")
   def isEmpty = true
 
+  def reverseAcc(acc: TweetList): TweetList = acc
+
+
 class Cons(val head: Tweet, val tail: TweetList) extends TweetList:
   def isEmpty = false
+
+  def reverseAcc(acc: TweetList): TweetList = {
+    tail.reverseAcc(Cons(head, acc))
+  }
 
 
 object GoogleVsApple:
   val google = List("android", "Android", "galaxy", "Galaxy", "nexus", "Nexus")
   val apple = List("ios", "iOS", "iphone", "iPhone", "ipad", "iPad")
 
-  lazy val googleTweets: TweetSet = ???
-  lazy val appleTweets: TweetSet = ???
+  val scrapedTweets: TweetSet = TweetReader.allTweets
 
+  def containsWord(l: List[String])(t: Tweet): Boolean = {
+    l.exists(w => t.text.contains(w))
+  }
+
+  val containsAppleWord = containsWord(apple)
+  val containsGoogleWord = containsWord(google)
+
+  lazy val googleTweets: TweetSet = scrapedTweets.filter(containsGoogleWord)
+  lazy val appleTweets: TweetSet = scrapedTweets.filter(containsAppleWord)
   /**
    * A list of all tweets mentioning a keyword from either apple or google,
    * sorted by the number of retweets.
    */
-  lazy val trending: TweetList = ???
+  lazy val trending: TweetList = googleTweets.union(appleTweets).descendingByRetweet
+
+  
 
 object Main extends App:
+  // println("Running Main...")
+
   // Print the trending tweets
   GoogleVsApple.trending foreach println
+  // println("Finished Main")
+

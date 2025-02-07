@@ -3,5 +3,7 @@
 set -e
 set -o pipefail
 
+TOKEN="fiDblO3lEbvzpu3b"
+
 # Run sbt with the submit command
-sbt "submit rohoehn123@gmail.com hL1htbpVpenA6Hu4" >> submit.log 2>> submit_err.log
+sbt "submit rohoehn123@gmail.com $TOKEN" >> submit.log 2>> submit_err.log
