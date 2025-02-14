@@ -112,7 +112,7 @@ trait Huffman extends HuffmanInterface:
   final def combine(trees: List[CodeTree]): List[CodeTree] = {
     trees match {
       case low :: high :: rest :: Nil => {
-        val combinedChars =  chars(low) ::: chars(high) 
+        val combinedChars = chars(low) ::: chars(high)
         val combinedWeights = weight(low) + weight(high)
         combine(Fork(low, high, combinedChars, combinedWeights) :: rest :: Nil)
       }
@@ -135,7 +135,8 @@ trait Huffman extends HuffmanInterface:
   def until(
       done: List[CodeTree] => Boolean,
       merge: List[CodeTree] => List[CodeTree]
-  )(trees: List[CodeTree]): List[CodeTree] = if done(trees) then trees else combine(trees)
+  )(trees: List[CodeTree]): List[CodeTree] =
+    if done(trees) then trees else combine(trees)
 
   /** This function creates a code tree which is optimal to encode the text
     * `chars`.
@@ -144,7 +145,11 @@ trait Huffman extends HuffmanInterface:
     * character frequencies from that text and creates a code tree based on
     * them.
     */
-  def createCodeTree(chars: List[Char]): CodeTree = ???
+  def createCodeTree(chars: List[Char]): CodeTree = {
+    val map = times(chars)
+    val leafs = makeOrderedLeafList(map)
+    until(singleton, combine)(leafs).head
+  }
 
   // Part 3: Decoding
 
@@ -153,7 +158,25 @@ trait Huffman extends HuffmanInterface:
   /** This function decodes the bit sequence `bits` using the code tree `tree`
     * and returns the resulting list of characters.
     */
-  def decode(tree: CodeTree, bits: List[Bit]): List[Char] = ???
+  def decode(tree: CodeTree, bits: List[Bit]): List[Char] = {
+
+    def traverse(
+        cTree: CodeTree,
+        bits: List[Bit],
+        acc: List[Char]
+    ): List[Char] = {
+      cTree match
+        case Fork(left, right, _, _) => {
+          bits match {
+            case 0 :: xs => traverse(left, bits.tail, acc)
+            case 1 :: xs => traverse(right, bits.tail, acc)
+            case _ => acc
+          }
+        }
+        case Leaf(c, _) => traverse(tree, bits.tail, c :: acc)
+    }
+    traverse(tree, bits, List())
+  }
 
   /** A Huffman coding tree for the French language. Generated from the data
     * given at
@@ -262,7 +285,9 @@ trait Huffman extends HuffmanInterface:
 
   /** Write a function that returns the decoded secret
     */
-  def decodedSecret: List[Char] = ???
+  def decodedSecret: List[Char] = {
+    decode(frenchCode, secret)
+  }
 
   // Part 4a: Encoding using Huffman tree
 
