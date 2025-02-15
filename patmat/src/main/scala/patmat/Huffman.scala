@@ -2,6 +2,7 @@ package patmat
 
 import scala.collection.View.Empty
 import scala.annotation.tailrec
+import scala.util.chaining
 
 /** A huffman code is represented by a binary tree.
   *
@@ -170,7 +171,7 @@ trait Huffman extends HuffmanInterface:
           bits match {
             case 0 :: xs => traverse(left, xs, acc)
             case 1 :: xs => traverse(right, xs, acc)
-            case _ => acc.reverse
+            case _       => acc.reverse
           }
         }
         case Leaf(c, _) => traverse(tree, bits, c :: acc)
@@ -294,7 +295,27 @@ trait Huffman extends HuffmanInterface:
   /** This function encodes `text` using the code tree `tree` into a sequence of
     * bits.
     */
-  def encode(tree: CodeTree)(text: List[Char]): List[Bit] = ???
+  def encode(tree: CodeTree)(text: List[Char]): List[Bit] = {
+
+    def traverse(
+        cTree: CodeTree,
+        rText: List[Char],
+        acc: List[Bit]
+    ): List[Bit] = {
+      cTree match
+        case Fork(left, right, _, _) => {
+          rText match {
+            case c :: xs if this.chars(left).contains(c) =>
+              traverse(left, rText, 0 :: acc)
+            case c :: xs if this.chars(right).contains(c) =>
+              traverse(right, rText, 1 :: acc)
+            case _ => acc.reverse
+          }
+        }
+        case Leaf(_, _) => traverse(tree, rText.tail, acc)
+    }
+    traverse(tree, text, List())
+  }
 
   // Part 4b: Encoding using code table
 
