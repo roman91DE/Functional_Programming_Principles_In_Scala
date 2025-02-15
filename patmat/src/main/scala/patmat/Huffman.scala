@@ -312,7 +312,8 @@ trait Huffman extends HuffmanInterface:
             case _ => acc.reverse
           }
         }
-        case Leaf(_, _) => traverse(tree, rText.tail, acc)
+        case Leaf(_, _) if rText.nonEmpty => traverse(tree, rText.tail , acc)
+        case _ => acc.reverse
     }
     traverse(tree, text, List())
   }
@@ -324,7 +325,9 @@ trait Huffman extends HuffmanInterface:
   /** This function returns the bit sequence that represents the character
     * `char` in the code table `table`.
     */
-  def codeBits(table: CodeTable)(char: Char): List[Bit] = ???
+  def codeBits(table: CodeTable)(char: Char): List[Bit] = {
+    table.filter((c, _) => c == char).head._2
+  }
 
   /** Given a code tree, create a code table which contains, for every character
     * in the code tree, the sequence of bits representing that character.
@@ -334,7 +337,20 @@ trait Huffman extends HuffmanInterface:
     * table. Using the code tables of the sub-trees, think of how to build the
     * code table for the entire tree.
     */
-  def convert(tree: CodeTree): CodeTable = ???
+  def convert(tree: CodeTree): CodeTable = {
+
+    def traverse(subtree: CodeTree, cdAcc: CodeTable, bitAcc: List[Bit]): CodeTable = {
+      subtree match
+        case Fork(left, right, _, _) => {
+          traverse(left, cdAcc, 0 :: bitAcc) ::: traverse(right, cdAcc, 1 :: bitAcc)
+        }
+        case Leaf(c, _) => {
+          (c, bitAcc) :: cdAcc
+        }
+      
+    }
+    traverse(tree, List(), List()).map((c, b) => (c, b.reverse))
+  }
 
   /** This function takes two code tables and merges them into one. Depending on
     * how you use it in the `convert` method above, this merge method might also
@@ -347,6 +363,7 @@ trait Huffman extends HuffmanInterface:
     * To speed up the encoding process, it first converts the code tree to a
     * code table and then uses it to perform the actual encoding.
     */
-  def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = ???
+  def quickEncode(tree: CodeTree)(text: List[Char]): List[Bit] = encode(tree)(text)
+  
 
 object Huffman extends Huffman

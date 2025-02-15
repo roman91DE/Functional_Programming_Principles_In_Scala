@@ -1,0 +1,58 @@
+[info] welcome to sbt 1.8.2 (Homebrew Java 11.0.26)
+[info] loading settings for project patmat-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/project/project/project
+[info] loading settings for project patmat-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/project/project
+[success] Generated .bloop/patmat-build-build.json
+[success] Total time: 1 s, completed Feb 15, 2025, 6:37:19 PM
+[info] loading settings for project patmat-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/project
+[success] Generated .bloop/patmat-build.json
+[success] Total time: 1 s, completed Feb 15, 2025, 6:37:20 PM
+[info] loading settings for project patmat from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-patmat (in build file:/Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/)
+[info] Attempting to submit "patmat" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: 4P53tpFm8E8cCIbB
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/89qyl/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/0K7cz
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 1 s, completed Feb 15, 2025, 6:37:22 PM
+[info] welcome to sbt 1.8.2 (Homebrew Java 11.0.26)
+[info] loading settings for project patmat-build-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/project/project/project
+[info] loading settings for project patmat-build-build from metals.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/project/project
+[success] Generated .bloop/patmat-build-build.json
+[success] Total time: 1 s, completed Feb 15, 2025, 6:48:58 PM
+[info] loading settings for project patmat-build from buildSettings.sbt,metals.sbt,plugins.sbt ...
+[info] loading project definition from /Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/project
+[success] Generated .bloop/patmat-build.json
+[success] Total time: 1 s, completed Feb 15, 2025, 6:48:59 PM
+[info] loading settings for project patmat from assignment.sbt,build.sbt ...
+[info] set current project to progfun1-patmat (in build file:/Users/roman/Repos/Functional_Programming_Principles_In_Scala/patmat/)
+[info] Attempting to submit "patmat" assignment in "scala-functional-programming" course
+[info] Using:
+[info] - email: rohoehn123@gmail.com
+[info] - submit token: 4P53tpFm8E8cCIbB
+[info] Connecting to Coursera...
+[info] Successfully connected to Coursera. (Status 201)
+[info] 
+[info] Assignment submitted successfully!
+[info] 
+[info] You can see how you scored by going to:
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/89qyl/
+[info] or (for premium learners):
+[info] https://www.coursera.org/learn/scala-functional-programming/programming/0K7cz
+[info]                        
+[info] and clicking on "My Submission".
+[success] Total time: 1 s, completed Feb 15, 2025, 6:49:01 PM
