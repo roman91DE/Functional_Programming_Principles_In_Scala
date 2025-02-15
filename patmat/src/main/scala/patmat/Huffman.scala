@@ -168,12 +168,12 @@ trait Huffman extends HuffmanInterface:
       cTree match
         case Fork(left, right, _, _) => {
           bits match {
-            case 0 :: xs => traverse(left, bits.tail, acc)
-            case 1 :: xs => traverse(right, bits.tail, acc)
-            case _ => acc
+            case 0 :: xs => traverse(left, xs, acc)
+            case 1 :: xs => traverse(right, xs, acc)
+            case _ => acc.reverse
           }
         }
-        case Leaf(c, _) => traverse(tree, bits.tail, c :: acc)
+        case Leaf(c, _) => traverse(tree, bits, c :: acc)
     }
     traverse(tree, bits, List())
   }
