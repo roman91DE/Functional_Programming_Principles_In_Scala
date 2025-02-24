@@ -15,5 +15,3 @@ logs/
 *.csv
 *.dat
 .bsp
-objsets/test.log
-forcomp/src/main/resources/forcomp/linuxwords.txt
